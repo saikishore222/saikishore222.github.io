@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --panel: #111827;
+        --primary: #38bdf8;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, var(--bg), #1e293b);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container {
+        width: min(900px, 90vw);
+        background: rgba(17, 24, 39, 0.8);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 16px;
+        padding: 48px 32px;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 5vw, 4rem);
+        margin: 0 0 16px;
+      }
+
+      p {
+        color: var(--muted);
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin: 0 0 24px;
+      }
+
+      .cta {
+        display: inline-block;
+        text-decoration: none;
+        color: var(--bg);
+        background: var(--primary);
+        padding: 12px 22px;
+        border-radius: 999px;
+        font-weight: bold;
+        transition: transform 0.2s ease;
+      }
+
+      .cta:hover {
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Hello, I'm Sai Kishore</h1>
+      <p>
+        I build clean, modern web experiences and enjoy turning ideas into engaging digital products.
+      </p>
+      <a class="cta" href="mailto:you@example.com">Contact Me</a>
+    </main>
+  </body>
+</html>
