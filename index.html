@@ -1,75 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
-    <style>
-      :root {
-        --bg: #0f172a;
-        --panel: #111827;
-        --primary: #38bdf8;
-        --text: #e2e8f0;
-        --muted: #94a3b8;
-      }
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kishore Challapalli</title>
+<meta name="description" content="Rust and Solana engineer. Anchor programs, wallet and payment backends. Two dApps on the Solana Mobile dApp Store.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F4F0;
+    --text: #1A1A18;
+    --muted: #6B6B64;
+    --line: #DDDDD6;
+    --accent: #1A5C4A;
+    --mark: #E0EAE5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111110;
+      --text: #E8E8E2;
+      --muted: #888880;
+      --line: #242420;
+      --accent: #5FBAAA;
+      --mark: #1A2421;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-      * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 18px;
+    line-height: 1.65;
+  }
+  ::selection { background: var(--mark); }
 
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, var(--bg), #1e293b);
-        color: var(--text);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+  .wrap {
+    max-width: 33rem;
+    margin: 0 auto;
+    padding: clamp(2.8rem, 8vw, 5.5rem) 1.5rem 5rem;
+  }
 
-      .container {
-        width: min(900px, 90vw);
-        background: rgba(17, 24, 39, 0.8);
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 16px;
-        padding: 48px 32px;
-        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
-      }
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  a:hover { text-decoration-thickness: 2px; }
 
-      h1 {
-        font-size: clamp(2.2rem, 5vw, 4rem);
-        margin: 0 0 16px;
-      }
+  /* --- header --- */
+  h1 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.8rem, 11vw, 4.4rem);
+    line-height: .93;
+    letter-spacing: -.03em;
+    margin: 0 0 1.2rem;
+  }
+  .lede {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    margin: 0 0 1.3rem;
+    color: var(--text);
+  }
+  nav {
+    font-size: .92rem;
+    color: var(--muted);
+  }
+  nav a { margin-right: 1rem; }
 
-      p {
-        color: var(--muted);
-        font-size: 1.1rem;
-        line-height: 1.7;
-        margin: 0 0 24px;
-      }
+  /* --- sections --- */
+  section {
+    margin-top: 3.8rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    scroll-margin-top: 1rem;
+  }
+  h2 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: -.01em;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    font-size: .85rem;
+    color: var(--muted);
+    margin: 0 0 1.4rem;
+  }
+  p { margin: 0 0 1rem; }
+  p:last-child { margin-bottom: 0; }
 
-      .cta {
-        display: inline-block;
-        text-decoration: none;
-        color: var(--bg);
-        background: var(--primary);
-        padding: 12px 22px;
-        border-radius: 999px;
-        font-weight: bold;
-        transition: transform 0.2s ease;
-      }
+  /* --- entries --- */
+  .entry { margin-bottom: 2.4rem; }
+  .entry:last-child { margin-bottom: 0; }
 
-      .cta:hover {
-        transform: translateY(-2px);
-      }
-    </style>
-  </head>
-  <body>
-    <main class="container">
-      <h1>Hello, I'm Sai Kishore</h1>
-      <p>
-        I build clean, modern web experiences and enjoy turning ideas into engaging digital products.
-      </p>
-      <a class="cta" href="mailto:you@example.com">Contact Me</a>
-    </main>
-  </body>
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .15rem .7rem;
+    margin-bottom: .2rem;
+  }
+  h3 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: -.015em;
+    margin: 0;
+  }
+  .when {
+    margin-left: auto;
+    font-size: .88rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .tech {
+    font-size: .93rem;
+    color: var(--muted);
+    margin: 0 0 .75rem;
+    font-style: italic;
+  }
+
+  ul {
+    margin: .8rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: .5rem;
+  }
+  li:last-child { margin-bottom: 0; }
+  li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: .83em;
+    width: .4rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--mark);
+    color: var(--accent);
+    padding: .1rem .5rem;
+    border-radius: 2px;
+    font-size: .88rem;
+  }
+
+  /* --- skills grid --- */
+  dl { margin: 0; }
+  .srow {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: .3rem 1rem;
+    padding: .65rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .srow:last-child { border-bottom: none; }
+  dt {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-size: .9rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  dd { margin: 0; font-size: .97rem; }
+
+  /* --- contact --- */
+  .clist { list-style: none; margin: 0; padding: 0; }
+  .clist li { padding-left: 0; margin-bottom: .45rem; }
+  .clist li::before { display: none; }
+  .copybtn {
+    font: inherit;
+    font-size: .85rem;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: .05rem .4rem;
+    margin-left: .4rem;
+    cursor: pointer;
+  }
+  .copybtn:hover { color: var(--text); border-color: var(--accent); }
+
+  footer {
+    margin-top: 3.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+    font-size: .88rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 480px) {
+    body { font-size: 17px; }
+    .when { margin-left: 0; width: 100%; }
+    .srow { grid-template-columns: 1fr; gap: .1rem; padding: .75rem 0; }
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header>
+    <h1>Kishore<br>Challapalli</h1>
+    <p class="lede">I build wallet and payment backends in Rust, and Anchor programs on Solana. Two apps I shipped are live on the Solana Mobile dApp Store.</p>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#tools">Tools</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about" aria-label="About">
+    <p>Three years at Straw Hat Labs on wallet and payment backends — Rust, Axum, Tokio, SQLx, PostgreSQL. On the Solana side: Anchor programs, wallet integration, transaction handling, two dApps shipped to the Mobile dApp Store.</p>
+    <p>Last year I built Wallet Sentinel. It scores every token in a Solana wallet for spam and scam risk, and catches address poisoning. On the test wallet in the demo, 22 of 24 tokens were junk.</p>
+    <p>Open to Solana developer and Rust backend roles.</p>
+  </section>
+
+  <section id="work">
+    <h2>Work</h2>
+
+    <div class="entry">
+      <div class="row">
+        <h3>Straw Hat Labs</h3>
+        <span class="when">Aug 2023 — Apr 2026</span>
+      </div>
+      <p class="tech">Bengaluru &middot; Rust, Axum, Tokio, SQLx, Solana, Anchor, PostgreSQL, Redis</p>
+      <ul>
+        <li>Built wallet and payment backends in Rust — account creation, transaction execution, balance tracking, auth.</li>
+        <li>Wrote Anchor programs for on-chain logic and handled wallet connections, transaction signing and lifecycle with Web3.js.</li>
+        <li>PostgreSQL schemas, query optimisation, Redis caching. Cut latency by 25–30%.</li>
+        <li>Async APIs and background workers with Axum and Tokio. JWT auth, RBAC, rate limiting, validation.</li>
+        <li>Real-time systems with WebSockets. Docker, CI/CD, production debugging.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <div class="entry">
+      <div class="row"><h3>Wallet Sentinel</h3></div>
+      <p class="tech">Rust, Axum, Helius, Next.js &mdash; <a href="https://wallet-sentinel-two.vercel.app">demo</a> &nbsp; <a href="https://github.com/saikishore222/wallet-sentinel">github</a></p>
+      <p>Solana wallet explorers show balances but don't tell you which tokens are bait. Wallet Sentinel scores every token in a wallet for spam and scam risk. It also detects address poisoning — when someone sends you a token from an address designed to look like one you've used before. On the test wallet: 22 of 24 tokens unverified, 17 dust, 2 sitting at 10k+ as bait.</p>
+    </div>
+
+    <div class="entry">
+      <div class="row"><h3>Anchor programs suite</h3></div>
+      <p class="tech">Rust, Anchor, SPL tokens</p>
+      <p>Escrow, vault, voting, and flash loan programs in Anchor. PDAs, CPIs, access control, full SPL token lifecycle. Each program has test coverage including the failure cases, not just the happy path.</p>
+    </div>
+
+    <div class="entry">
+      <div class="row"><h3>TrustME</h3></div>
+      <p class="tech">Anchor, Solana, Flutter &mdash; Solana Mobile dApp Store</p>
+      <p>A dApp live on the Solana Mobile dApp Store. Anchor programs for on-chain logic and validation. Wallet connections, transaction signing, confirmation, error handling. Backend APIs and a Flutter app on top.</p>
+    </div>
+
+    <div class="entry">
+      <div class="row"><h3>EazySplyt</h3></div>
+      <p class="tech">Solana, Web3.js, Flutter &mdash; Solana Mobile dApp Store</p>
+      <p>Split payments between wallets, on Solana. Also live on the Mobile dApp Store. Wallet-based payments and transaction handling tuned to stay responsive on a phone.</p>
+    </div>
+
+    <div class="entry">
+      <div class="row"><h3>Solana trading backend</h3></div>
+      <p class="tech">Solana RPC, Jupiter APIs, Node.js</p>
+      <p>Backend for swap execution and wallet monitoring built on the Jupiter APIs. Transaction lifecycle, validation, retry on failure. <span class="badge">Won Jupiter Hackathon, Hyderabad</span></p>
+    </div>
+
+    <div class="entry">
+      <div class="row"><h3>Summer of Bitcoin</h3></div>
+      <p class="tech">Rust, Bitcoin Dev Kit (BDK)</p>
+      <p>Bitcoin wallet internship during college. Transaction creation, UTXO management, wallet sync in Rust. First serious Rust codebase.</p>
+    </div>
+
+  </section>
+
+  <section id="tools">
+    <h2>Tools</h2>
+    <dl>
+      <div class="srow">
+        <dt>Solana</dt>
+        <dd>Anchor, PDAs, CPIs, SPL tokens, Web3.js, wallet integration, transaction lifecycle</dd>
+      </div>
+      <div class="srow">
+        <dt>Rust</dt>
+        <dd>Axum, Tokio, SQLx, async/await, traits, ownership, error handling</dd>
+      </div>
+      <div class="srow">
+        <dt>Backend</dt>
+        <dd>REST, WebSockets, JWT, RBAC, rate limiting, Node.js, Express, FastAPI</dd>
+      </div>
+      <div class="srow">
+        <dt>Data</dt>
+        <dd>PostgreSQL, Redis, MongoDB</dd>
+      </div>
+      <div class="srow">
+        <dt>Infra</dt>
+        <dd>Docker, GitHub Actions, CI/CD, Nginx, Linux</dd>
+      </div>
+      <div class="srow">
+        <dt>Also</dt>
+        <dd>TypeScript, JavaScript, Python</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section id="education" aria-label="Education">
+    <h2>Education</h2>
+    <div class="row">
+      <h3>B.Tech CS &mdash; RGUKT Nuzvid</h3>
+      <span class="when">2019 – 2023</span>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Open to Solana and Rust backend roles.</p>
+    <ul class="clist">
+      <li>
+        <a href="mailto:saikishore.chsk@gmail.com">saikishore.chsk@gmail.com</a>
+        <button class="copybtn" type="button" id="copyBtn">Copy</button>
+      </li>
+      <li><a href="https://x.com/krishna_murthyy">@krishna_murthyy</a> on X</li>
+      <li><a href="https://github.com/saikishore222">github.com/saikishore222</a></li>
+      <li><a href="REPLACE_WITH_LINKEDIN_URL">LinkedIn</a></li>
+    </ul>
+  </section>
+
+  <footer>Hyderabad, India</footer>
+
+</main>
+
+<script>
+(function(){
+  var btn = document.getElementById('copyBtn');
+  if (!btn) return;
+  btn.addEventListener('click', function(){
+    var email = 'saikishore.chsk@gmail.com';
+    var done = function(){ btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = 'Copy'; }, 1800); };
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(email).then(done);
+    } else {
+      var t = document.createElement('textarea');
+      t.value = email; document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); done(); } catch(e){}
+      document.body.removeChild(t);
+    }
+  });
+})();
+</script>
+</body>
 </html>
